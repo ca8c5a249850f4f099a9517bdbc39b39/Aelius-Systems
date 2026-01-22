@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<a href="target-page.html">
+  <img src="Copilot_20260121_172821.png" alt="Description" style="width:100%; height:auto;" />
+</a>
+
+  <meta charset="UTF-8" />
+  <title>Aelius Systems – Cosmic Map</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #ffffff;
+    }
+
+    .cosmic-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #000 url("background.jpg") center center / cover no-repeat fixed;
+    }
+
+    /* Optional overlay for readability */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
+      pointer-events: none;
+    }
+
+    .title-bar {
+      position: absolute;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 5;
+      text-shadow: 0 0 12px rgba(0, 255, 255, 0.8);
+    }
+
+    .title-bar h1 {
+      font-size: 2rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .title-bar h2 {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-top: 0.25rem;
+      letter-spacing: 0.3em;
+    }
+
+    /* Clickable regions (hotspots) */
+    .hotspot {
+      position: absolute;
+      border-radius: 50%;
+      cursor: pointer;
+      /* Make them visible while tuning; set to 0 when done */
+      border: 1px solid rgba(0, 255, 255, 0.7);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+      background: radial-gradient(circle, rgba(0,255,255,0.25), rgba(0,0,0,0));
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .hotspot:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 18px rgba(0, 255, 255, 1);
+    }
+
+    /* When you’re satisfied with positions, you can hide outlines:
+       .hotspot { border: none; box-shadow: none; background: transparent; } */
+
+    /* Approximate positions for 3440x1440 (use percentages so it scales) */
+    /* Center black hole */
+    #hs-blackhole {
+      width: 10%;
+      aspect-ratio: 1 / 1;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Planets – adjust these to match your actual layout */
+    /* Left side (3) */
+    #hs-planet-black {
+      width: 5%;
+      aspect-ratio: 1 / 1;
+      top: 25%;
+      left: 20%;
+    }
+
+    #hs-planet-red {
+      width: 5%;
+      aspect-ratio: 1 / 1;
+      top: 40%;
+      left: 15%;
+    }
+
+    #hs-planet-orange {
+      width: 5%;
+      aspect-ratio: 1 / 1;
+      top: 60%;
+      left: 18%;
+    }
+
+    /* Bottom (2) */
+    #hs-planet-yellow {
+      width: 5%;
+      aspect-ratio: 1 / 1;
+      top: 75%;
+      left: 40%;
+    }
+
+    #hs-planet-green {
+      width: 5%;
+      aspect-ratio: 1 / 1;
+      top: 78%;
+      left: 60%;
+    }
+
+    /* Right side (3) */
+    #hs-planet-cyan {
+      width: 5%;
+      aspect-ratio: 1 / 1;
+      top: 30%;
+      left: 80%;
+    }
+
+    #hs-planet-violet {
+      width: 5%;
+      aspect-ratio: 1 / 1;
+      top: 50%;
+      left: 85%;
+    }
+
+    #hs-planet-white {
+      width: 5%;
+      aspect-ratio: 1 / 1;
+      top: 65%;
+      left: 78%;
+    }
+
+    /* Above (2) */
+    #hs-planet-purple {
+      width: 5%;
+      aspect-ratio: 1 / 1;
+      top: 15%;
+      left: 45%;
+    }
+
+    #hs-planet-blue {
+      width: 5%;
+      aspect-ratio: 1 / 1;
+      top: 18%;
+      left: 55%;
+    }
+
+    /* Optional tooltip label */
+    .tooltip {
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.25rem 0.5rem;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      font-size: 0.7rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .hotspot:hover .tooltip {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="cosmic-wrapper">
+    <div class="overlay"></div>
+
+    <div class="title-bar">
+      <h1>AELIUS SYSTEMS</h1>
+      <h2>COSMIC INTERFACE</h2>
+    </div>
+
+    <!-- Black hole hotspot -->
+    <div id="hs-blackhole" class="hotspot" data-target="blackhole">
+      <div class="tooltip">Central Black Hole</div>
+    </div>
+
+    <!-- Planets (order: black, red, orange, yellow, green, cyan, violet, white, purple, blue) -->
+    <div id="hs-planet-black" class="hotspot" data-target="planet-black">
+      <div class="tooltip">Black Ocean Earth</div>
+    </div>
+
+    <div id="hs-planet-red" class="hotspot" data-target="planet-red">
+      <div class="tooltip">Red Ocean Earth</div>
+    </div>
+
+    <div id="hs-planet-orange" class="hotspot" data-target="planet-orange">
+      <div class="tooltip">Orange Ocean Earth</div>
+    </div>
+
+    <div id="hs-planet-yellow" class="hotspot" data-target="planet-yellow">
+      <div class="tooltip">Yellow Ocean Earth</div>
+    </div>
+
+    <div id="hs-planet-green" class="hotspot" data-target="planet-green">
+      <div class="tooltip">Green Ocean Earth</div>
+    </div>
+
+    <div id="hs-planet-cyan" class="hotspot" data-target="planet-cyan">
+      <div class="tooltip">Cyan Ocean Earth</div>
+    </div>
+
+    <div id="hs-planet-violet" class="hotspot" data-target="planet-violet">
+      <div class="tooltip">Violet Ocean Earth</div>
+    </div>
+
+    <div id="hs-planet-white" class="hotspot" data-target="planet-white">
+      <div class="tooltip">White Ocean Earth</div>
+    </div>
+
+    <div id="hs-planet-purple" class="hotspot" data-target="planet-purple">
+      <div class="tooltip">Purple Ocean Earth</div>
+    </div>
+
+    <div id="hs-planet-blue" class="hotspot" data-target="planet-blue">
+      <div class="tooltip">Blue Ocean Earth</div>
+    </div>
+  </div>
+
+  <script>
+    // Map each target to a URL or action
+    const targetActions = {
+      "blackhole": () => {
+        alert("Black Hole: Core Aelius Systems hub.");
+        // window.location.href = "blackhole.html";
+      },
+      "planet-black": () => {
+        alert("Black Ocean Earth: Node 1");
+      },
+      "planet-red": () => {
+        alert("Red Ocean Earth: Node 2");
+      },
+      "planet-orange": () => {
+        alert("Orange Ocean Earth: Node 3");
+      },
+      "planet-yellow": () => {
+        alert("Yellow Ocean Earth: Node 4");
+      },
+      "planet-green": () => {
+        alert("Green Ocean Earth: Node 5");
+      },
+      "planet-cyan": () => {
+        alert("Cyan Ocean Earth: Node 6");
+      },
+      "planet-violet": () => {
+        alert("Violet Ocean Earth: Node 7");
+      },
+      "planet-white": () => {
+        alert("White Ocean Earth: Node 8");
+      },
+      "planet-purple": () => {
+        alert("Purple Ocean Earth: Node 9");
+      },
+      "planet-blue": () => {
+        alert("Blue Ocean Earth: Node 10");
+      }
+    };
+
+    document.querySelectorAll(".hotspot").forEach(hs => {
+      hs.addEventListener("click", () => {
+        const target = hs.getAttribute("data-target");
+        const action = targetActions[target];
+        if (action) action();
+      });
+    });
+  </script>
+</body>
+</html>
