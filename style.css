@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-image: url('site/image/Copilot_20260121_172821.png')
+    background: #f4f4f4;
+    color: #333;
+}
+
+/* HEADER */
+.site-header {
+    background: #222;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* BODY LAYOUT */
+/* BODY LAYOUT */
+.site-body {
+    display: flex;
+    height: 62vh;        /* <-- This makes the body always 62% of screen height */
+    background: #fff;
+}
+
+/* LEFT SIDEBAR */
+.left-sidebar {
+    width: 16%;
+    background: #e6e6e6;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+}
+
+/* RIGHT SIDEBAR */
+.right-sidebar {
+    width: 16%;
+    background: #e6e6e6;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    width: 68%;   /* Adjusted to fill remaining space */
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    width: 60%;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* SCROLL CONTAINER */
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 80%;
+    padding: 10px;
+    gap: 20px;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* ITEMS */
+.item {
+    min-width: 200px;
+    height: 150px;
+    background: #ddd;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+/* SCROLL BUTTONS */
+.scroll-btn {
+    background: #222;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.scroll-btn:hover {
+    background: #444;
+}
+
+.left-btn {
+    margin-right: 10px;
+}
+
+.right-btn {
+    margin-left: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .site-body {
+        flex-direction: column;
+    }
+
+    .left-sidebar,
+    .main-content,
+    .right-sidebar {
+        width: 100%;
+        border: none;
+    }
+
+    .scroll-container {
+        width: 100%;
+    }
+}
